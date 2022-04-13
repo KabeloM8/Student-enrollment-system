@@ -10,5 +10,6 @@ export interface User {
   gender: string;
   role: string;
   created: boolean;
+  applied: boolean;
   studentId: string;
 }

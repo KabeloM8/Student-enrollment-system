@@ -20,13 +20,30 @@
     </nav>
     <!-- Main content -->
     <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
-      <h2>Apply for a course</h2>
-      <div class="list-group" *ngFor="let course of courses; let i = index">
-        <div class="d-flex w-100 justify-content-between">
-          <h5 class="mb-1">{{course.courseName}}</h5>
+      <h1>Welcome {{user.name}} {{user.surname}}</h1>
+      <div *ngIf="user.applied === false">
+        <h2>Apply for a course</h2>
+        <div class="list-group" *ngFor="let course of courses; let i = index">
+          <div class="d-flex w-100 justify-content-between">
+            <h5 class="mb-1">{{course.courseName}}</h5>
+          </div>
+          <p class="mb-1">{{course.description}}</p>
+          <button (click)="applyCourse(i)">Apply</button>
         </div>
-        <p class="mb-1">{{course.description}}</p>
-        <button>Apply</button>
+      </div>
+      <div *ngIf="user.applied === true">
+        <div *ngIf="application.approved === null" class="panel panel-default">
+          <h4>Application pending, Please wait for your application to be processed...</h4>
+          <div class="panel-heading"><b>Course Name:</b> {{application.courseName}}</div>
+          <div class="panel-body"><b>Course description:</b> {{application.courseDescription}}</div>
+        </div>
+        <div *ngIf="application.approved === true" class="panel panel-default">
+          <h4>Congratulations {{application.applicantName}}, You've successfully been enrolled for
+            {{application.courseName}}</h4>
+        </div>
+        <div *ngIf="application.approved === false" class="panel panel-default">
+          <h4>Sorry, your application for {{application.courseName}} was not successful... Try again next year!</h4>
+        </div>
       </div>
     </main>
   </div>

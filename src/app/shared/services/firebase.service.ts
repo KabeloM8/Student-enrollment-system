@@ -103,6 +103,7 @@ export class FirebaseService {
       gender: user.gender,
       role: user.role,
       created: true,
+      applied: false,
       studentId: Date.now().toString(),
     };
 
@@ -187,6 +188,28 @@ export class FirebaseService {
     return this.afAuth.signOut().then(() => {
       localStorage.removeItem('user');
       this.router.navigate(['sign-in']);
+    });
+  }
+  /* Setting up application when user applies for a course */
+  SetApplication(course: any, applicant: any) {
+    const applicationId = 'application' + Date.now().toString();
+
+    this.afs.doc(`applications/${applicationId}`).set({
+      applicationId,
+      applicantId: applicant.uid,
+      applicantName: applicant.name + ' ' + applicant.surname,
+      courseId: course.courseId,
+      courseName: course.courseName,
+      courseDescription: course.description,
+      approved: null,
+    }).then(() => {
+      this.afs.doc(`users/${this.userData.uid}`).update({
+        applied: true,
+      }).catch(error => {
+        console.log(error);
+      });
+    }).catch(error => {
+      console.log(error);
     });
   }
 }
