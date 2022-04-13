@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { ActivatedRouteSnapshot, CanActivate, RouterStateSnapshot, UrlTree, Router } from '@angular/router';
 import { Observable } from 'rxjs';
-import { AuthService } from "../../shared/services/auth.service";
+import { FirebaseService } from "../services/firebase.service";
 
 @Injectable({
   providedIn: 'root'
@@ -9,7 +9,7 @@ import { AuthService } from "../../shared/services/auth.service";
 export class AuthGuard implements CanActivate {
 
   constructor(
-    public authService: AuthService,
+    public firebaseService: FirebaseService,
     public router: Router
   ){ }
 
@@ -17,9 +17,9 @@ export class AuthGuard implements CanActivate {
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot
   ): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-    console.log('canAtivate', this.authService.isLoggedIn);
+    console.log('canAtivate', this.firebaseService.isLoggedIn);
 
-    if(this.authService.isLoggedIn !== true) {
+    if(this.firebaseService.isLoggedIn !== true) {
       this.router.navigate(['sign-in']);
     }
     return true;

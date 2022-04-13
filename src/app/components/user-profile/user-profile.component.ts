@@ -1,6 +1,7 @@
 import { Component, NgZone, OnInit } from '@angular/core';
-import { AuthService } from "../../shared/services/auth.service";
+import { FirebaseService } from "../../shared/services/firebase.service";
 import { FormBuilder } from '@angular/forms';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -10,12 +11,13 @@ import { FormBuilder } from '@angular/forms';
 })
 export class UserProfileComponent implements OnInit {
   userDetails = {
-    name: '',
-    surname: '',
+    name: null,
+    surname: null,
     dob: null,
-    gender: '',
-    phone: '',
-    idNo: ''
+    gender: null,
+    phone: null,
+    idNo: null,
+    created: false
   }
   studentForm = this.formBuilder.group({
     name: '',
@@ -27,13 +29,15 @@ export class UserProfileComponent implements OnInit {
   });
   constructor(
     private formBuilder: FormBuilder,
-    private authService: AuthService,
-    public ngZone: NgZone
+    private firebaseService: FirebaseService,
+    public ngZone: NgZone,
+    public router: Router,
   ) { }
 
   ngOnInit(): void {
-    console.log('isLoggedIn', this.authService.isLoggedIn);
-    const userRef = this.authService.GetUserRef();
+    console.log('isLoggedIn', this.firebaseService.isLoggedIn);
+
+    const userRef = this.firebaseService.GetUserRef();
     userRef.ref.get().then(doc => {
       if(doc.exists) {
         this.ngZone.run(() => {
@@ -45,6 +49,7 @@ export class UserProfileComponent implements OnInit {
           this.userDetails.gender = docData.gender;
           this.userDetails.phone = docData.phone;
           this.userDetails.idNo = docData.idNo;
+          this.userDetails.created = docData.created;
         });
       }
     }).catch(err => {
@@ -54,13 +59,13 @@ export class UserProfileComponent implements OnInit {
 
   onSubmit(): void {
     const userDetails = {
-      uid: this.authService.userData.uid,
-      email: this.authService.userData.email,
-      photoURL: this.authService.userData.photoURL,
+      uid: this.firebaseService.userData.uid,
+      email: this.firebaseService.userData.email,
+      photoURL: this.firebaseService.userData.photoURL,
       role: 'student',
       ...this.studentForm.value
     }
 
-    this.authService.SetUserData(userDetails);
+    this.firebaseService.SetUserData(userDetails);
   }
 }

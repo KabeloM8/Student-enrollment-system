@@ -22,7 +22,7 @@ import { UserProfileComponent } from './components/user-profile/user-profile.com
 import { AppRoutingModule } from './app-routing.module';
 
 // service
-import { AuthService } from './shared/services/auth.service';
+import { FirebaseService } from './shared/services/firebase.service';
 
 @NgModule({
   declarations: [
@@ -44,7 +44,7 @@ import { AuthService } from './shared/services/auth.service';
     AngularFireStorageModule,
     AngularFireDatabaseModule,
   ],
-  providers: [AuthService],
+  providers: [FirebaseService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

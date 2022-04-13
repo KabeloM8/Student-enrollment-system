@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { AuthService } from "../../shared/services/auth.service";
+import { FirebaseService } from "../../shared/services/firebase.service";
 
 @Component({
   selector: 'app-forgot-password',
@@ -9,7 +9,7 @@ import { AuthService } from "../../shared/services/auth.service";
 export class ForgotPasswordComponent implements OnInit {
 
   constructor(
-    public authService: AuthService
+    public firebaseService: FirebaseService
   ) { }
 
   ngOnInit(): void {

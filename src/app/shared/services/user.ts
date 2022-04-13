@@ -9,5 +9,6 @@ export interface User {
   idNo: string;
   gender: string;
   role: string;
+  created: boolean;
   studentId: string;
 }

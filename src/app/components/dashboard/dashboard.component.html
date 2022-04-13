@@ -5,13 +5,13 @@
       <div class="sidebar-sticky">
         <ul class="nav flex-column">
           <li class="nav-item">
-            <a class="nav-link active">
+            <a class="nav-link active" routerLink="/user-profile">
               <i class="fas fa-user"></i>User Profile
             </a>
           </li>
-          <!-- Calling SignOut() Api from AuthService -->
+          <!-- Calling SignOut() Api from FirebaseService -->
           <li class="nav-item">
-            <a class="nav-link" (click)="authService.SignOut()">
+            <a class="nav-link" (click)="firebaseService.SignOut()">
               <i class="fas fa-sign-out-alt"></i>Log out
             </a>
           </li>

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { AuthService } from '../../shared/services/auth.service';
+import { FirebaseService } from '../../shared/services/firebase.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -9,11 +9,11 @@ import { AuthService } from '../../shared/services/auth.service';
 export class DashboardComponent implements OnInit {
   courses: any;
 
-  constructor(public authService: AuthService) { }
+  constructor(public firebaseService: FirebaseService) { }
 
   ngOnInit(): void {
-    console.log('isLoggedIn', this.authService.isLoggedIn);
-    this.courses = this.authService.courses;
+    console.log('isLoggedIn', this.firebaseService.isLoggedIn);
+    this.courses = this.firebaseService.courses;
     console.log('courses', this.courses);
   }
 

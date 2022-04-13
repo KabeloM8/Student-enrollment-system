@@ -8,9 +8,9 @@
       <div class="form-group">
         <input type="password" class="form-control" placeholder="Password" #userPassword required>
       </div>
-      <!-- Calling SignIn Api from AuthService -->
+      <!-- Calling SignIn Api from FirebaseService -->
       <div class="form-group">
-        <input type="button" class="btn btn-primary" value="Log in" (click)="authService.SignIn(userName.value, userPassword.value)">
+        <input type="button" class="btn btn-primary" value="Log in" (click)="firebaseService.SignIn(userName.value, userPassword.value)">
       </div>
       <div class="forgotPassword">
         <span routerLink="/forgot-password">Forgot Password?</span>

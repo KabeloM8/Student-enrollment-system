@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { AuthService } from "../../shared/services/auth.service";
+import { Router } from '@angular/router';
+import { FirebaseService } from "../../shared/services/firebase.service";
 
 @Component({
   selector: 'app-sign-up',
@@ -9,11 +10,16 @@ import { AuthService } from "../../shared/services/auth.service";
 export class SignUpComponent implements OnInit {
 
   constructor(
-    public authService: AuthService
+    public firebaseService: FirebaseService,
+    public router: Router
   ) { }
 
   ngOnInit(): void {
-    console.log('isLoggedIn', this.authService.isLoggedIn);
+    console.log('isLoggedIn', this.firebaseService.isLoggedIn);
+    if(this.firebaseService.isLoggedIn === true) {
+      console.log('nav to dashboard')
+      this.router.navigate(['dashboard']);
+    }
   }
 
 }
