@@ -25,6 +25,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { FirebaseService } from './shared/services/firebase.service';
 
 import { MDBBootstrapModule } from 'angular-bootstrap-md';
+import { AdminComponent } from './components/admin/admin.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +34,8 @@ import { MDBBootstrapModule } from 'angular-bootstrap-md';
     SignInComponent,
     SignUpComponent,
     ForgotPasswordComponent,
-    UserProfileComponent
+    UserProfileComponent,
+    AdminComponent
   ],
   imports: [
     BrowserModule,

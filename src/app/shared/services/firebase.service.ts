@@ -218,6 +218,7 @@ export class FirebaseService {
       enrolleeId: application.applicantId,
       enrolleeName: application.applicantName,
       courseId: application.courseId,
+      courseName: application.courseName
     }).then((result) => {
       console.log(result);
     }).catch(error => {

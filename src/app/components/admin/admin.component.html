@@ -1,0 +1,18 @@
+<div class="container">
+  <div class="row">
+    <div class="col-6" *ngFor="let application of applications; let i = index">
+      <mdb-card>
+        <mdb-card-body>
+          <mdb-card-title>
+            <h4>{{application.applicantName}}</h4>
+          </mdb-card-title>
+          <mdb-card-text>{{application.courseName}}</mdb-card-text>
+          <button mdbBtn color="red" block="true" class="my-4" mdbWavesEffect (click)="accept(i)">
+            Accept</button>
+          <button mdbBtn color="green" block="true" class="my-4" mdbWavesEffect (click)="reject(i)">
+            Reject</button>
+        </mdb-card-body>
+      </mdb-card>
+    </div>
+  </div>
+</div>
