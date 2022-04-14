@@ -52,6 +52,10 @@ export class DashboardComponent implements OnInit {
 
           this.ngZone.run(() => {
             this.application = change.doc.data();
+
+            if (this.application.approved === true) {
+              this.firebaseService.SetEnrollee(this.application);
+            }
           });
         }
       });

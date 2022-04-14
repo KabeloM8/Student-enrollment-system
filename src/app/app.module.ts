@@ -24,6 +24,8 @@ import { AppRoutingModule } from './app-routing.module';
 // service
 import { FirebaseService } from './shared/services/firebase.service';
 
+import { MDBBootstrapModule } from 'angular-bootstrap-md';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -43,6 +45,7 @@ import { FirebaseService } from './shared/services/firebase.service';
     AngularFirestoreModule,
     AngularFireStorageModule,
     AngularFireDatabaseModule,
+    MDBBootstrapModule.forRoot()
   ],
   providers: [FirebaseService],
   bootstrap: [AppComponent]

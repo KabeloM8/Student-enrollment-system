@@ -1,39 +1,23 @@
-<div class="table">
-  <div class="displayTableCell">
-    <div class="authBlock">
-      <h2>Student Enrolment System</h2>
-      <h3>Sign Up</h3>
-      <div class="form-group">
-        <input
-          type="email"
-          class="form-control"
-          placeholder="Email Address"
-          #userEmail
-          required
-        />
-      </div>
-      <div class="form-group">
-        <input
-          type="password"
-          class="form-control"
-          placeholder="Password"
-          #userPwd
-          required
-        />
-      </div>
-      <div class="form-group">
-        <input
-          type="button"
-          class="btn btn-primary"
-          value="Sign Up"
-          (click)="firebaseService.SignUp(userEmail.value, userPwd.value)"
-        />
-      </div>
-    <div class="redirectToLogin">
-      <span
-        >Already have an account?
-        <span class="redirect" routerLink="/sign-in">Log In</span></span
-      >
+<p class="h2 mb-4 text-center">Student Enrolment System</p>
+<div class="container">
+  <div class="row justify-content-md-center">
+    <div class="col-6 col-sm-6 col-md-8">
+      <form class="text-center border border-light p-5">
+        <p class="h4 mb-4">Sign Up</p>
+        <div class="form-group">
+          <input type="email" class="form-control mb-4" placeholder="Email Address" #userEmail required/>
+        </div>
+        <div class="form-group">
+          <input type="password" class="form-control mb-4" placeholder="Password" #userPwd required/>
+        </div>
+        <div class="form-group">
+          <button mdbBtn color="info" block="true" class="my-4"
+            (click)="firebaseService.SignUp(userEmail.value, userPwd.value)">Sign up</button>
+        </div>
+        <div class="redirectToLogin">
+          <span>Already have an account? <a class="redirect" routerLink="/sign-in">Log In</a></span>
+        </div>
+      </form>
     </div>
   </div>
 </div>

@@ -1,24 +1,27 @@
-<div class="table">
-  <div class="displayTableCell">
-    <div class="authBlock">
-      <h2>Student Enrolment System</h2>
-      <h3>Sign In</h3>
-      <div class="form-group">
-        <input type="text" class="form-control" placeholder="Username" #userName required>
-      </div>
-      <div class="form-group">
-        <input type="password" class="form-control" placeholder="Password" #userPassword required>
-      </div>
-      <!-- Calling SignIn Api from FirebaseService -->
-      <div class="form-group">
-        <input type="button" class="btn btn-primary" value="Log in" (click)="firebaseService.SignIn(userName.value, userPassword.value)">
-      </div>
-      <div class="forgotPassword">
-        <span routerLink="/forgot-password">Forgot Password?</span>
-      </div>
-    </div>
-    <div class="redirectToLogin">
-      <span>Don't have an account?<span class="redirect" routerLink="/register-user"> Sign Up</span></span>
+<p class="h2 mb-4 text-center">Student Enrolment System</p>
+<div class="container">
+  <div class="row justify-content-md-center">
+    <div class="col-6 col-sm-6 col-md-8">
+      <form class="text-center border border-light p-5">
+        <p class="h4 mb-4">Sign In</p>
+        <div class="form-group">
+          <input type="text" class="form-control mb-4" placeholder="Username" #userName required>
+        </div>
+        <div class="form-group">
+          <input type="password" class="form-control mb-4" placeholder="Password" #userPassword required>
+        </div>
+        <!-- Calling SignIn Api from FirebaseService -->
+        <div class="form-group">
+          <button mdbBtn color="info" block="true" class="my-4"
+          (click)="firebaseService.SignIn(userName.value, userPassword.value)">Sign In</button>
+        </div>
+        <div class="forgotPassword">
+          <a routerLink="/forgot-password">Forgot Password?</a>
+        </div>
+        <div class="redirectToLogin">
+          <span>Don't have an account?<a class="redirect" routerLink="/register-user"> Sign Up</a></span>
+        </div>
+      </form>
     </div>
   </div>
 </div>

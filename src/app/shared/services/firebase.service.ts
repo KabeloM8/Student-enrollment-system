@@ -212,4 +212,16 @@ export class FirebaseService {
       console.log(error);
     });
   }
+
+  SetEnrollee(application: any) {
+    this.afs.doc(`enrollees/${application.applicantId}`).set({
+      enrolleeId: application.applicantId,
+      enrolleeName: application.applicantName,
+      courseId: application.courseId,
+    }).then((result) => {
+      console.log(result);
+    }).catch(error => {
+      console.log(error);
+    });
+  }
 }
