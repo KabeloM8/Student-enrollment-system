@@ -1,7 +1,7 @@
 <!-- Sidebar navigation -->
-<div class="container-fluid">
-  <div class="row">
-    <nav class="col-md-2 d-md-block bg-light sidebar">
+<div class="container-fluid" style="height: 100%;">
+  <div class="row" style="height: 100%;">
+    <nav class="col-md-2 d-md-block bg-light sidebar" style="height: 900px;">
       <div class="sidebar-sticky">
         <ul class="nav flex-column">
           <li class="nav-item">
@@ -20,13 +20,85 @@
     </nav>
     <!-- Main content -->
     <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
-      <h2>Apply for a course</h2>
-      <div class="list-group" *ngFor="let course of courses; let i = index">
-        <div class="d-flex w-100 justify-content-between">
-          <h5 class="mb-1">{{course.courseName}}</h5>
+      <p class="h2 mb-4 text-center">Welcome {{user.name}} {{user.surname}}</p>
+      <div class="text-center border border-light p-5" *ngIf="user.applied === false">
+        <h2>Apply for a course</h2>
+        <div class="container">
+          <div class="row">
+            <div class="col-6" *ngFor="let course of courses; let i = index">
+              <mdb-card>
+                <div class="view rgba-white-slight waves-light" mdbWavesEffect>
+                  <!-- Card img -->
+                  <mdb-card-img src="https://mdbootstrap.com/img/Mockups/Lightbox/Thumbnail/img%20(67).webp" alt="Card image cap"></mdb-card-img>
+                  <a>
+                    <div class="mask"></div>
+                  </a>
+                </div>
+                <mdb-card-body>
+                  <mdb-card-title>
+                    <h4>{{course.courseName}}</h4>
+                  </mdb-card-title>
+                  <mdb-card-text>{{course.description}}</mdb-card-text>
+                  <button mdbBtn color="info" block="true" class="my-4" mdbWavesEffect (click)="applyCourse(i)">
+                    Apply</button>
+                </mdb-card-body>
+              </mdb-card>
+            </div>
+          </div>
         </div>
-        <p class="mb-1">{{course.description}}</p>
-        <button>Apply</button>
+      </div>
+      <div *ngIf="user.applied === true">
+        <div *ngIf="application.approved === null" class="panel panel-default">
+          <div class="container">
+            <div class="row justify-content-md-center">
+              <div class="col-6">
+                <mdb-card>
+                  <mdb-card-body>
+                    <mdb-card-title>
+                      <h4>Application pending, Please wait for your application to be processed...</h4>
+                    </mdb-card-title>
+                    <mdb-card-text>
+                      <p><b>Course Name:</b> {{application.courseName}}</p>
+                      <p><b>Course description:</b> {{application.courseDescription}}</p>
+                    </mdb-card-text>
+                  </mdb-card-body>
+                </mdb-card>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div *ngIf="application.approved === true" class="panel panel-default">
+          <div class="container">
+            <div class="row justify-content-md-center">
+              <div class="col-6">
+                <mdb-card>
+                  <mdb-card-body>
+                    <mdb-card-title>
+                      <h4 style="color: green;">Congratulations {{application.applicantName}}, You've successfully been enrolled for
+                        {{application.courseName}}</h4>
+                    </mdb-card-title>
+                  </mdb-card-body>
+                </mdb-card>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div *ngIf="application.approved === false" class="panel panel-default">
+          <div class="container">
+            <div class="row justify-content-md-center">
+              <div class="col-6">
+                <mdb-card>
+                  <mdb-card-body>
+                    <mdb-card-title>
+                      <h4 style="color: red;">Sorry, your application for {{application.courseName}}
+                        was not successful... Try again next year!</h4>
+                    </mdb-card-title>
+                  </mdb-card-body>
+                </mdb-card>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </main>
   </div>
